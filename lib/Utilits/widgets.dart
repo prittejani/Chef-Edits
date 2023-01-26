@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
-
-class AppWidgets {
+import 'package:flutter/material.dart';
   Widget SpaceBox({height, width, Widget, key}) {
     return SizedBox(
       height: height,
@@ -9,4 +7,4 @@ class AppWidgets {
       key: key,
     );
   }
-}
+

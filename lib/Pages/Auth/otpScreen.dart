@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/Pages/Auth/loginScreen.dart';
 import 'package:restaurant_app/Utilits/colors.dart';
 import 'package:restaurant_app/Utilits/widgets.dart';
 
@@ -22,7 +23,9 @@ class OtpScreen extends StatefulWidget {
   String phoneNumber = '';
   String ReVerificationIdForOtp = '';
 
-  OtpScreen({Key? key, required this.verificationId, required this.phoneNumber})
+  OtpScreen({Key? key,
+  //  required this.verificationId, required this.phoneNumber
+  })
       : super(key: key);
 
   @override
@@ -31,7 +34,6 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   TextEditingController otpController = TextEditingController();
-  AppWidgets appWidgets = AppWidgets();
   FirebaseAuth auth = FirebaseAuth.instance;
   String ReVerificationIdForOtp = '';
 
@@ -80,7 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   void initState() {
-    otpTimer();
+   // otpTimer();
     super.initState();
   }
 
@@ -110,11 +112,11 @@ class _OtpScreenState extends State<OtpScreen> {
                   width: size.width / 3,
                   child: Image.asset('assets/images/logo.png'),
                 ),
-                appWidgets.SpaceBox(height: size.height / 35),
+                SpaceBox(height: size.height / 35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    appWidgets.SpaceBox(width: size.width / 13),
+                    SpaceBox(width: size.width / 13),
                     Text(
                       'Verification Code',
                       style:
@@ -122,7 +124,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                   ],
                 ),
-                appWidgets.SpaceBox(height: size.height / 70),
+                SpaceBox(height: size.height / 70),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -133,17 +135,17 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                   ],
                 ),
-                appWidgets.SpaceBox(height: size.height / 30),
+                SpaceBox(height: size.height / 30),
                 Container(
                   height: size.height / 13,
                   width: size.width / 1.1,
                   decoration: BoxDecoration(
                     color: AppColors.MainYellow,
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
                     children: [
-                      appWidgets.SpaceBox(width: size.width / 20),
+                      SpaceBox(width: size.width / 20),
                       Container(
                         alignment: Alignment.center,
                         height: size.height / 14,
@@ -181,7 +183,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ],
                   ),
                 ),
-                appWidgets.SpaceBox(height: size.height / 30),
+                SpaceBox(height: size.height / 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -199,75 +201,82 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                   ],
                 ),
-                appWidgets.SpaceBox(height: size.height / 30),
-                Visibility(
-                  maintainSize: true,
-                  maintainAnimation: true,
-                  maintainState: true,
-                  visible: true,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: size.height / 20,
-                    width: size.width / 2.5,
-                    decoration: BoxDecoration(
-                      color: AppColors.MainYellow,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        auth.verifyPhoneNumber(
-                            phoneNumber: '+91${widget.phoneNumber}',
-                            timeout: const Duration(seconds: 60),
-                            verificationCompleted:
-                                (AuthCredential credential) {},
-                            verificationFailed:
-                                (FirebaseAuthException authException) {
-                              log(authException.code);
-                            },
-                            codeSent: (String verifificationId, int? id) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Code ReSent Successfully'),
-                                ),
-                              );
-
-                              ReVerificationIdForOtp = verifificationId;
-                              log("Id ~~>> $ReVerificationIdForOtp");
-                            },
-                            codeAutoRetrievalTimeout: (String val) {});
-                      },
-                      child: Text(
-                        'ReSend OTP',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: AppColors.MainGray),
+                SpaceBox(height: size.height / 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Visibility(
+                      maintainSize: true,
+                      maintainAnimation: true,
+                      maintainState: true,
+                      visible: true,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: size.height / 16,
+                        width: size.width / 2.5,
+                        decoration: BoxDecoration(
+                          color: AppColors.MainYellow,
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            // auth.verifyPhoneNumber(
+                            //     phoneNumber: '+91${widget.phoneNumber}',
+                            //     timeout: const Duration(seconds: 60),
+                            //     verificationCompleted:
+                            //         (AuthCredential credential) {},
+                            //     verificationFailed:
+                            //         (FirebaseAuthException authException) {
+                            //       log(authException.code);
+                            //     },
+                            //     codeSent: (String verifificationId, int? id) {
+                            //       ScaffoldMessenger.of(context).showSnackBar(
+                            //         SnackBar(
+                            //           content: Text('Code ReSent Successfully'),
+                            //         ),
+                            //       );
+                            //
+                            //       ReVerificationIdForOtp = verifificationId;
+                            //       log("Id ~~>> $ReVerificationIdForOtp");
+                            //     },
+                            //     codeAutoRetrievalTimeout: (String val) {});
+                          },
+                          child: Text(
+                            'ReSend OTP',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                                color: AppColors.MainGray),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                appWidgets.SpaceBox(height: size.height / 30),
-                Container(
-                  alignment: Alignment.center,
-                  height: size.height / 20,
-                  width: size.width / 2.5,
-                  decoration: BoxDecoration(
-                    color: AppColors.MainYellow,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      VerifyOtp();
-                    },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                          color: AppColors.MainGray),
+                    Container(
+                      alignment: Alignment.center,
+                      height: size.height / 16,
+                      width: size.width / 2.5,
+                      decoration: BoxDecoration(
+                        color: AppColors.MainYellow,
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          //VerifyOtp();
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                        },
+                        child: Text(
+                          'Submit',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              color: AppColors.MainGray),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                SpaceBox(height: size.height / 30),
+
               ],
             ),
           ),

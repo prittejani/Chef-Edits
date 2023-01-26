@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Pages/signupScreen.dart';
+import 'package:restaurant_app/Pages/Auth/loginScreen.dart';
+import 'package:restaurant_app/Pages/Auth/otpScreen.dart';
+import 'package:restaurant_app/Pages/Auth/signupScreen.dart';
 import 'package:restaurant_app/Pages/splashScreen.dart';
-
-import 'Pages/Auth/otpScreen.dart';
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -16,8 +16,6 @@ void main()  async{
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -25,6 +23,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return SignupScreen();
+    return LoginScreen();
   }
 }
